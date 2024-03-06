@@ -27,7 +27,7 @@ namespace AnimationInstancing
         [SerializeField]
         private List<AnimationClip> customClips = new List<AnimationClip>();
         private Dictionary<string, bool> generateAnims = new Dictionary<string, bool>();
-        
+
 
         private ArrayList aniInfo = new ArrayList();
         private int aniFps = 15;
@@ -107,21 +107,21 @@ namespace AnimationInstancing
                 workingInfo.animator.Play(workingInfo.info.animationNameHash);
                 workingInfo.animator.Update(0);
                 workingInfo.workingFrame = 0;
+
+                // 显示进度条
+                EditorUtility.DisplayProgressBar("Generating Animations", $"Animation '{workingInfo.info.animationName}' is Generating.", 0);
                 return;
             }
             if (workingInfo != null)
             {
-                //float time = workingInfo.animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-                //Debug.Log("The time is" + time);
                 for (int j = 0; j != workingInfo.meshRender.Length; ++j)
                 {
                     GenerateBoneMatrix(workingInfo.meshRender[j].name.GetHashCode(),
-                                            workingInfo.info.animationNameHash,
-                                            workingInfo.workingFrame,
-                                            Matrix4x4.identity,
-                                            false);
+                                        workingInfo.info.animationNameHash,
+                                        workingInfo.workingFrame,
+                                        Matrix4x4.identity,
+                                        false);
                 }
-                //Debug.Log("The length is" + workingInfo.animator.velocity.magnitude);
                 workingInfo.info.velocity[workingInfo.workingFrame] = workingInfo.animator.velocity;
                 workingInfo.info.angularVelocity[workingInfo.workingFrame] = workingInfo.animator.angularVelocity * Mathf.Rad2Deg;
 
@@ -144,6 +144,8 @@ namespace AnimationInstancing
                         SetupAnimationTexture(aniInfo);
                         SaveAnimationInfo(generatedPrefab.name);
                         DestroyImmediate(workingInfo.animator.gameObject);
+
+                        // 清除进度条
                         EditorUtility.ClearProgressBar();
                     }
 
@@ -155,17 +157,13 @@ namespace AnimationInstancing
                     workingInfo = null;
                     return;
                 }
-                
+
                 float deltaTime = workingInfo.length / (workingInfo.info.totalFrame - 1);
                 workingInfo.animator.Update(deltaTime);
-                // EditorUtility.DisplayProgressBar("Generating Animations",
-                //     string.Format("Animation '{0}' is Generating.", workingInfo.info.animationName),
-                //     ((float)(generateCount - generateInfo.Count) / generateCount));
 
-
-				//Debug.Log(string.Format("Animation '{0}' is Generating. Current frame is {1}", workingInfo.info.animationName, workingInfo.workingFrame));
-                
-                
+                // 更新进度条
+                float progress = (float)workingInfo.workingFrame / workingInfo.info.totalFrame;
+                EditorUtility.DisplayProgressBar("Generating Animations", $"Animation '{workingInfo.info.animationName}' is Generating.", progress);
             }
         }
 
@@ -274,13 +272,14 @@ namespace AnimationInstancing
                     if (!generateAnims[clipName])
                         continue;
 
-					AnimationClip clip = clips.Find(delegate(AnimationClip c) {
-						if (c != null)
-							return c.name == clipName;
-						return false;
-					});
+                    AnimationClip clip = clips.Find(delegate (AnimationClip c)
+                    {
+                        if (c != null)
+                            return c.name == clipName;
+                        return false;
+                    });
                     int framesToBake = clip ? (int)(clip.length * aniFps / 1.0f) : 1;
-					framesToBake = Mathf.Clamp(framesToBake, 1, framesToBake);
+                    framesToBake = Mathf.Clamp(framesToBake, 1, framesToBake);
                     totalFrames += framesToBake;
                     frames.Add(framesToBake);
                 }
@@ -298,13 +297,14 @@ namespace AnimationInstancing
                 scrollPosition = GUILayout.BeginScrollView(scrollPosition);
                 foreach (var clipName in clipNames)
                 {
-					AnimationClip clip = clips.Find(delegate(AnimationClip c) {
-						if (c != null)
-							return c.name == clipName;
-						return false;
-					});
+                    AnimationClip clip = clips.Find(delegate (AnimationClip c)
+                    {
+                        if (c != null)
+                            return c.name == clipName;
+                        return false;
+                    });
                     int framesToBake = clip ? (int)(clip.length * aniFps / 1.0f) : 1;
-					framesToBake = Mathf.Clamp(framesToBake, 1, framesToBake);
+                    framesToBake = Mathf.Clamp(framesToBake, 1, framesToBake);
                     GUILayout.BeginHorizontal();
                     {
                         generateAnims[clipName] = EditorGUILayout.Toggle(string.Format("({0}) {1} ", framesToBake, clipName), generateAnims[clipName]);
@@ -343,7 +343,7 @@ namespace AnimationInstancing
                 obj.transform.position = Vector3.zero;
                 obj.transform.rotation = Quaternion.identity;
                 Animator animator = obj.GetComponentInChildren<Animator>();
-                
+
                 AnimationInstancing script = obj.GetComponent<AnimationInstancing>();
                 Debug.Assert(script);
                 SkinnedMeshRenderer[] meshRender = obj.GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -464,7 +464,7 @@ namespace AnimationInstancing
                 generatedObject.transform.position = Vector3.zero;
                 generatedObject.transform.rotation = Quaternion.identity;
                 Animator animator = generatedObject.GetComponentInChildren<Animator>();
-                
+
                 AnimationInstancing script = generatedObject.GetComponent<AnimationInstancing>();
                 Debug.Assert(script);
                 SkinnedMeshRenderer[] meshRender = generatedObject.GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -543,7 +543,7 @@ namespace AnimationInstancing
                 Debug.LogError("You should select a prefab with AnimationInstancing component.");
                 return;
             }
-			instance.prototype = generatedPrefab;
+            instance.prototype = generatedPrefab;
 
             for (int i = 0; i != stateMachine.states.Length; ++i)
             {
@@ -569,7 +569,7 @@ namespace AnimationInstancing
                 AnimationBakeInfo bake = new AnimationBakeInfo();
                 bake.length = clip.averageDuration;
                 bake.animator = animator;
-				bake.animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+                bake.animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
                 bake.meshRender = meshRender;
                 bake.layer = layer;
                 bake.info = new AnimationInfo();
@@ -580,7 +580,7 @@ namespace AnimationInstancing
                 bake.info.totalFrame = Mathf.Clamp(bake.info.totalFrame, 1, bake.info.totalFrame);
                 bake.info.fps = bakeFPS;
                 bake.info.rootMotion = true;
-                bake.info.wrapMode = clip.isLooping? WrapMode.Loop: clip.wrapMode;
+                bake.info.wrapMode = clip.isLooping ? WrapMode.Loop : clip.wrapMode;
                 if (bake.info.rootMotion)
                 {
                     bake.info.velocity = new Vector3[bake.info.totalFrame];
@@ -698,6 +698,9 @@ namespace AnimationInstancing
 
             file.Close();
             aniInfo.Clear();
+
+            // 刷新资源数据库
+            AssetDatabase.Refresh();
         }
 
         private List<AnimationClip> GetClips(bool bakeFromAnimator)
@@ -748,17 +751,17 @@ namespace AnimationInstancing
             for (int i = 0; i != stateMachine.states.Length; ++i)
             {
                 UnityEditor.Animations.ChildAnimatorState state = stateMachine.states[i];
-				if (state.state.motion is UnityEditor.Animations.BlendTree)
-				{
-					UnityEditor.Animations.BlendTree blendTree = state.state.motion as UnityEditor.Animations.BlendTree;
-					ChildMotion[] childMotion = blendTree.children;
-					for(int j = 0; j != childMotion.Length; ++j) 
-					{
-						list.Add(childMotion[j].motion as AnimationClip);
-					}
-				}
-				else if (state.state.motion != null)
-                	list.Add(state.state.motion as AnimationClip);
+                if (state.state.motion is UnityEditor.Animations.BlendTree)
+                {
+                    UnityEditor.Animations.BlendTree blendTree = state.state.motion as UnityEditor.Animations.BlendTree;
+                    ChildMotion[] childMotion = blendTree.children;
+                    for (int j = 0; j != childMotion.Length; ++j)
+                    {
+                        list.Add(childMotion[j].motion as AnimationClip);
+                    }
+                }
+                else if (state.state.motion != null)
+                    list.Add(state.state.motion as AnimationClip);
             }
             for (int i = 0; i != stateMachine.stateMachines.Length; ++i)
             {
@@ -1078,9 +1081,9 @@ namespace AnimationInstancing
             SkinnedMeshRenderer[] render = obj.GetComponentsInChildren<SkinnedMeshRenderer>();
             for (int i = 0; i != render.Length; ++i)
             {
-                Gizmos.DrawMesh(render[i].sharedMesh, obj.transform.position, obj.transform.rotation); 
+                Gizmos.DrawMesh(render[i].sharedMesh, obj.transform.position, obj.transform.rotation);
             }
-            
+
         }
     }
 }
