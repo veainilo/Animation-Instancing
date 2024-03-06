@@ -69,8 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AniInstancing\Shader\Normal-BumpSpecinstancing.shader" />
+    <None Include="Assets\Effects\Effects\Shaders\Additive.shader" />
     <None Include="Assets\AniInstancing\Shader\Mobile-BumpSpec_instancing.shader" />
     <None Include="Assets\AniInstancing\Shader\Normal-DiffuseInstancing.shader" />
+    <None Include="Assets\Effects\Effects\Shaders\PFX_Particles.shader" />
     <None Include="Assets\AniInstancing\Shader\AnimationInstancingBase.cginc" />
   </ItemGroup>
   <ItemGroup>

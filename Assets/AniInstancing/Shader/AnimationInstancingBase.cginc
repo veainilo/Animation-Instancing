@@ -158,12 +158,12 @@ half4 skinningShadowSimplified(inout appdata_full v)
 
 void vert(inout appdata_full v)
 {
-	v.vertex = skinningShadowSimplified(v);
-// #ifdef UNITY_PASS_SHADOWCASTER
-// 	v.vertex = skinningShadow(v);
-// #else
-// 	v.vertex = skinning(v);
-// #endif
+	// v.vertex = skinningShadowSimplified(v);
+#ifdef UNITY_PASS_SHADOWCASTER
+	v.vertex = skinningShadow(v);
+#else
+	v.vertex = skinning(v);
+#endif
 }
 
 //#define DECLARE_VERTEX_SKINNING \
