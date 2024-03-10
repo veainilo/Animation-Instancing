@@ -227,6 +227,7 @@ namespace AnimationInstancing
         {
             Debug.Assert(prefab != null);
             GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            obj.name = prefab.name;
             AnimationInstancing script = obj.GetComponent<AnimationInstancing>();
             AnimationInstancing prototypeScript = prefab.GetComponent<AnimationInstancing>();
             script.prototype = prototypeScript.prototype;

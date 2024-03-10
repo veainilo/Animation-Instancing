@@ -22,7 +22,7 @@ namespace AnimationInstancing
 
         void LoadAB()
         {
-			StartCoroutine(AnimationManager.GetInstance().LoadAnimationAssetBundle(Application.streamingAssetsPath + "/AssetBundle/animationtexture"));
+			// StartCoroutine(AnimationManager.GetInstance().LoadAnimationAssetBundle(Application.streamingAssetsPath + "/AssetBundle/animationtexture"));
         }
 
         // Use this for initialization
@@ -91,6 +91,7 @@ namespace AnimationInstancing
             for (int i = 0; i != OriginalCount; ++i)
             {
                 GameObject obj = Instantiate(m_commonObj, pos, q);
+                obj.name = m_commonObj.name;
                 pos.x += 1.5f;
                 if (pos.x > width * 1.5f)
                 {

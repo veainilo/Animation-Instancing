@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Spawner: MonoBehaviour {
+public class Spawner : MonoBehaviour
+{
 
     public GameObject prefabA;
     public GameObject prefabB;
@@ -11,9 +12,9 @@ public class Spawner: MonoBehaviour {
     public int showCount = 0;
 
     List<GameObject> objList;
-	void OnGUI()
-	{
-		GUILayout.Label(string.Format("Spawns up to {0} characters, current {1}", showCount, count));
+    void OnGUI()
+    {
+        GUILayout.Label(string.Format("Spawns up to {0} characters, current {1}", showCount, count));
 
         if (GUI.Button(new Rect(10, 100, 100, 40), "Decrease"))
         {
@@ -37,12 +38,12 @@ public class Spawner: MonoBehaviour {
         lastTime = Time.time;
         objList = new List<GameObject>();
         LoadAB();
-		AnimationInstancing.AnimationInstancingMgr.Instance.UseInstancing = true;
+        AnimationInstancing.AnimationInstancingMgr.Instance.UseInstancing = true;
     }
 
     void LoadAB()
     {
-		StartCoroutine(AnimationInstancing.AnimationManager.Instance.LoadAnimationAssetBundle(Application.streamingAssetsPath + "/AssetBundle/animationtexture"));
+        // StartCoroutine(AnimationInstancing.AnimationManager.Instance.LoadAnimationAssetBundle(Application.streamingAssetsPath + "/AssetBundle/animationtexture"));
     }
 
 
@@ -60,7 +61,7 @@ public class Spawner: MonoBehaviour {
 
     void Update()
     {
-        if(count < showCount)
+        if (count < showCount)
         {
             bool alt = Input.GetButton("Fire1");
 
@@ -81,13 +82,19 @@ public class Spawner: MonoBehaviour {
                 {
                     GameObject obj = null;
                     if (prefabA != null && !alt)
+                    {
                         obj = Instantiate(prefabB, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                        obj.name = prefabB.name;
+                    }
                     if (prefabB != null && alt)
+                    {
                         obj = Instantiate(prefabA, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                        obj.name = prefabA.name;
+                    }
                     obj.SetActive(true);
                     objList.Add(obj);
                 }
-                
+
                 lastTime = Time.time;
                 count++;
                 //showCount = count;

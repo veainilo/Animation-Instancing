@@ -368,6 +368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: jiafeimao_instancing
       objectReference: {fileID: 0}
+    - target: {fileID: 4105687967862754233, guid: 205b911cfb627cf4faaf6b85e8d22784,
+        type: 3}
+      propertyPath: shadowCastingMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 205b911cfb627cf4faaf6b85e8d22784, type: 3}
 --- !u!4 &1236773010 stripped

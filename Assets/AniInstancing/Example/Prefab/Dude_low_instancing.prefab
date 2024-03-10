@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prototype: {fileID: 1498374009216960}
   playSpeed: 1
-  shadowCastingMode: 0
+  shadowCastingMode: 1
   receiveShadow: 0
   applyRootMotion: 1
   bonePerVertex: 4
