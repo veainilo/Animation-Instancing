@@ -232,9 +232,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -1186110207598883336}
   - {fileID: -7959088016621809745}
-  m_StateMachineBehaviours:
-  - {fileID: 2473272153026026848}
-  - {fileID: 5323550327346353628}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -688,10 +686,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -4586738146250183875}
   - {fileID: 8792189695493610552}
-  m_StateMachineBehaviours:
-  - {fileID: -993174203073422801}
-  - {fileID: -8759200996335982258}
-  - {fileID: -5267038084438982670}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -759,8 +754,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -2795296590435996478}
   - {fileID: 298608475864750684}
-  m_StateMachineBehaviours:
-  - {fileID: -3559517980889849292}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -991,8 +985,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 5290612908483102190}
   - {fileID: -8146533592690102158}
-  m_StateMachineBehaviours:
-  - {fileID: -6055717458306044861}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1123,9 +1116,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2706143516523062885}
-  m_StateMachineBehaviours:
-  - {fileID: -3957016703933397758}
-  - {fileID: -6785389951706626777}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1168,11 +1159,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7665163601356080638}
-  m_StateMachineBehaviours:
-  - {fileID: 1334658466198030925}
-  - {fileID: 6072115149487879755}
-  - {fileID: -1833441527321504417}
-  - {fileID: 5521391540683302028}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1683,8 +1670,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -183312403781334836}
-  m_StateMachineBehaviours:
-  - {fileID: 3676989821705678074}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

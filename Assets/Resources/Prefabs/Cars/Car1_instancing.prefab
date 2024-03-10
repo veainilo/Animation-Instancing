@@ -135,6 +135,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1829973764615271509}
     m_Modifications:
+    - target: {fileID: 3210179317520921128, guid: f155bc0074bfaae4cbfd42358dd16c43,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5893548875895870430, guid: f155bc0074bfaae4cbfd42358dd16c43,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008793284462824655, guid: f155bc0074bfaae4cbfd42358dd16c43,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477207188458586953, guid: f155bc0074bfaae4cbfd42358dd16c43,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519436989759311829, guid: f155bc0074bfaae4cbfd42358dd16c43,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6965783077671260785, guid: f155bc0074bfaae4cbfd42358dd16c43,
         type: 3}
       propertyPath: m_RootOrder
@@ -195,8 +220,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: vehicle001
       objectReference: {fileID: 0}
+    - target: {fileID: 8759812442215588184, guid: f155bc0074bfaae4cbfd42358dd16c43,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f155bc0074bfaae4cbfd42358dd16c43, type: 3}
+--- !u!1 &4187626119712795317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2922056879535501705, guid: f155bc0074bfaae4cbfd42358dd16c43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1337662018925353788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1829602106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187626119712795317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47bf4169ec5dd4cbf530cf6929eeab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prototype: {fileID: 3285222800123458517}
+  playSpeed: 1
+  shadowCastingMode: 0
+  receiveShadow: 0
+  applyRootMotion: 0
+  bonePerVertex: 4
 --- !u!4 &8231236830710073677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6965783077671260785, guid: f155bc0074bfaae4cbfd42358dd16c43,
